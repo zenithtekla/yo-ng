@@ -70,10 +70,10 @@ module.exports = function (grunt) {
     // The actual grunt server settings
     connect: {
       options: {
-        port: 8080,
+        port: process.env.PORT,
         // Change this to '0.0.0.0' to access the server from outside.
-        hostname: '0.0.0.0',
-        livereload: 35729
+        hostname: process.env.IP,
+        livereload: 8080
       },
       livereload: {
         options: {
@@ -295,7 +295,18 @@ module.exports = function (grunt) {
     // concat: {
     //   dist: {}
     // },
-
+    // zetek
+    // concat: {
+    //   js: {
+    //     src: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
+    //     dest: '<%= yeoman.dist %>/js/scripts.js'
+    //   },
+    //   css: {
+    //     src: ['<%= yeoman.app %>/styles/{,*/}*.css'],
+    //     dest: '<%= yeoman.dist %>/css/styles.css'
+    //   }
+    // },
+    
     imagemin: {
       dist: {
         files: [{
@@ -480,4 +491,6 @@ module.exports = function (grunt) {
     'test',
     'build'
   ]);
+  
+  grunt.loadNpmTasks('grunt-contrib-concat');
 };

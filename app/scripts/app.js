@@ -10,6 +10,7 @@
  */
 angular
   .module('workspaceApp', [
+    'ui.router',
     'ngAnimate',
     'ngCookies',
     'ngResource',
@@ -17,19 +18,22 @@ angular
     'ngSanitize',
     'ngTouch'
   ])
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl',
-        controllerAs: 'main'
-      })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
-      })
-      .otherwise({
-        redirectTo: '/'
-      });
-  });
+  .config(['$urlRouterProvider', '$stateProvider', function($urlRouterProvider, $stateProvider) {
+  $urlRouterProvider.otherwise('/');
+  $stateProvider
+    .state('main', {
+      url: '/',
+      templateUrl: 'views/main.html',
+      controller: 'MainCtrl'
+    })
+    .state('about', {
+      url: '/about',
+      templateUrl: 'views/about.html',
+      controller: 'AboutCtrl'
+    })
+    .state('contact', {
+      url: '/contact',
+      templateUrl: 'views/contact.html'
+    });
+  }]);
+
