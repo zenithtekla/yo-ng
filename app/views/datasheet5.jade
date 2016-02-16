@@ -1,0 +1,32 @@
+html
+  body
+    h3 {{ tpl_data.title}}
+    input(type='text', ng-model='myText')
+    | {{myText}}
+    br
+    select(ng-model='ds5.selectedValue', ng-options='value for value in ds5.items')
+    .table-responsive
+      table.table.table-bordered.table-striped
+        thead.thead-inverse
+          tr
+            th  {{ tpl_data.txt.start }} 
+            th  {{ tpl_data.start_date }} 
+            th  {{ tpl_data.txt.end }} 
+            th  {{ tpl_data.end_date }} 
+            th  {{ tpl_data.txt.total }} 
+            th  {{ tpl_data.total }} 
+          tr
+            th  {{ tpl_data.customer }} 
+            th  {{ tpl_data.assembly }} 
+            th  {{ tpl_data.date_received }} 
+            th  {{ tpl_data.time_received }} 
+            th  {{ tpl_data.date_completed }} 
+            th  {{ tpl_data.time_completed }} 
+        tbody
+          tr(ng-repeat='entry in ds5.entries')
+            td  {{ entry.customer }} 
+            td  {{ entry.assembly }} 
+            td  {{ entry.date_received }} 
+            td  {{ entry.time_received }} 
+            td  {{ entry.date_completed }} 
+            td  {{ entry.time_completed }} 

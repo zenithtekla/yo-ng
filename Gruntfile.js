@@ -37,6 +37,10 @@ module.exports = function (grunt) {
         files: ['bower.json'],
         tasks: ['wiredep']
       },
+      jade: {
+        files: ['<%= yeoman.app %>/{,*/}*.jade'],
+        tasks: ['jade']
+      },
       js: {
         files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
         tasks: ['newer:jshint:all', 'newer:jscs:all'],
@@ -61,8 +65,10 @@ module.exports = function (grunt) {
         },
         files: [
           '<%= yeoman.app %>/{,*/}*.html',
+          '<%= yeoman.app %>/{,*/}*.jade',
           '.tmp/styles/{,*/}*.css',
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
+          
         ]
       }
     },
@@ -70,10 +76,10 @@ module.exports = function (grunt) {
     // The actual grunt server settings
     connect: {
       options: {
-        port: process.env.PORT,
+        port: 8080,
         // Change this to '0.0.0.0' to access the server from outside.
-        hostname: process.env.IP,
-        livereload: 8080
+        hostname: '0.0.0.0',
+        livereload: 8081
       },
       livereload: {
         options: {
@@ -117,7 +123,20 @@ module.exports = function (grunt) {
         }
       }
     },
-
+    jade: {
+      dist: {
+          options: {
+              pretty: true
+          },
+          files: [{
+              expand: true,
+              cwd: '<%= yeoman.app %>',
+              dest: '.tmp',
+              src: '{,*/}*.jade',
+              ext: '.html'
+          }]
+      }
+    },
     // Make sure there are no obvious mistakes
     jshint: {
       options: {
@@ -437,7 +456,6 @@ module.exports = function (grunt) {
     }
   });
 
-
   grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
     if (target === 'dist') {
       return grunt.task.run(['build', 'connect:dist:keepalive']);
@@ -445,6 +463,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
+      'jade',
       'wiredep',
       'concurrent:server',
       'postcss:server',
@@ -466,9 +485,10 @@ module.exports = function (grunt) {
     'connect:test',
     'karma'
   ]);
-
+  
   grunt.registerTask('build', [
     'clean:dist',
+    'jade',
     'wiredep',
     'useminPrepare',
     'concurrent:dist',
@@ -493,4 +513,5 @@ module.exports = function (grunt) {
   ]);
   
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-jade');
 };

@@ -1,0 +1,14 @@
+{
+   "txt":{
+      "start":"start",
+      "end":"end",
+      "total":"total"
+   },
+   "customer":"customer",
+   "assembly":"assembly",
+   "date_received":"date_received",
+   "time_received":"time_received",
+   "date_completed":"date_completed",
+   "time_completed":"time_completed",
+   "action":"Actions"
+}

@@ -1,0 +1,26 @@
+[
+	{
+		"customer": "cust01",
+		"assembly": "assem01",
+		"date_received": "02-08-2015",
+		"time_received": "09:15",
+		"date_completed": "02-23-2015",
+		"time_completed": "10:27"
+	},
+	{
+		"customer": "cust02",
+		"assembly": "assem02",
+		"date_received": "02-11-2015",
+		"time_received": "11:15",
+		"date_completed": "02-26-2015",
+		"time_completed": "12:38"
+	},
+	{
+		"customer": "cust03",
+		"assembly": "assem03",
+		"date_received": "03-11-2015",
+		"time_received": "08:25",
+		"date_completed": "03-22-2015",
+		"time_completed": "13:40"
+	}
+]

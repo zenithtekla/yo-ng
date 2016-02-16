@@ -1,0 +1,78 @@
+<h3>{{ tpl_data.title}}</h3>
+<br>
+<div class="table-responsive">
+<table class="table table-bordered table-striped table-condensed">
+    <thead>
+    <tr>
+        <th colspan="2">
+            <input type="text" ng-model="query">
+            <span ng-show="query">Search for "{{query}}"</span>
+            <span ng-show="!query">Search...</span>
+        </th>
+        <th><select ng-model="ds4.selectedValue" ng-options="value for value in ds4.items"></select></th>
+        <th>
+            <a href="#"><<</a>
+            | <a href="#">1</a>
+            | <a href="#">49</a>
+            | <a href="#">50</a>
+            | <a href="#">51</a>
+            | <a href="#">100</a>
+            | <a href="#">>></a>
+        </th>
+        <th colspan="3">
+            <button ng-click="refresh()" class="btn-xs btn-primary">
+                <span class="glyphicon glyphicon-refresh"></span> 
+                Refresh (F7)
+            </button>
+            <button ng-click="save()" class="btn-xs btn-primary">
+                <span class="glyphicon glyphicon-floppy-disk"></span> 
+                Save (F8)
+            </button>
+            <button ng-click="export()" class="btn-xs btn-primary">
+                <span class="glyphicon glyphicon-print"></span> 
+                Print (F9)
+            </button>
+        </th>
+    </tr>
+    <tr>
+        <th> {{ tpl_data.txt.start }} </th>
+        <th> {{ tpl_data.start_date }} </th>
+        <th> {{ tpl_data.txt.end }} </th>
+        <th> {{ tpl_data.end_date }} </th>
+        <th> {{ tpl_data.txt.total }} </th>
+        <th colspan="2"> {{ tpl_data.total }} </th>
+    </tr>
+    </thead>
+    <thead class="thead-inverse">
+    <tr>
+        <th> {{ tpl_data.customer }} </th>
+        <th> {{ tpl_data.assembly }} </th>
+        <th> {{ tpl_data.date_received }} </th>
+        <th> {{ tpl_data.time_received }} </th>
+        <th> {{ tpl_data.date_completed }} </th>
+        <th> {{ tpl_data.time_completed }} </th>
+        <th> {{ tpl_data.action }} </th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="entry in ds4.entries | filter:query">
+            <td><input type="text" ng-model="entry.customer" ng-change="ds4.entries.$save(entry)"></td>
+            <td><input type="text" ng-model="entry.assembly" ng-change="ds4.entries.$save(entry)"></td>
+            <td><input type="text" ng-model="entry.date_received" ng-change="ds4.entries.$save(entry)"></td>
+            <td><input type="text" ng-model="entry.time_received" ng-change="ds4.entries.$save(entry)"></td>
+            <td><input type="text" ng-model="entry.date_completed" ng-change="ds4.entries.$save(entry)"></td>
+            <td><input type="text" ng-model="entry.time_completed" ng-change="ds4.entries.$save(entry)"></td>
+            <td><button ng-click="ds4.entries.$remove(entry)" class="btn-xs btn-danger">-</button></td>
+        </tr>
+        <tr>
+            <td><input type="text" ng-model="new_entry.customer"></td>
+            <td><input type="text" ng-model="new_entry.assembly"></td>
+            <td><input type="text" ng-model="new_entry.date_received"></td>
+            <td><input type="text" ng-model="new_entry.time_received"></td>
+            <td><input type="text" ng-model="new_entry.date_completed"></td>
+            <td><input type="text" ng-model="new_entry.time_completed"></td>
+            <td><button ng-click="insert()" class="btn-xs btn-success">Insert</button></td>
+        </tr>
+    </tbody>
+</table>
+</div>

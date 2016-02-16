@@ -1,0 +1,21 @@
+<div class="modal fade" id="authModal" role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content">              
+      <div class="modal-body">
+        <form class="form-signin" role="form">
+          <input ng-model="user.email" type="email" class="form-control" placeholder="Email address" required="" autofocus="">
+          <input ng-model="user.password" type="password" class="form-control" placeholder="Password" required="">
+          <div class="checkbox checkbox-success">
+            <input ng-model="checkbox.signup" ng-init="checkbox.signup=false" type="checkbox">
+            <label> Sign Up for first-timer </label>
+          </div>
+          <div class="text-center">
+          <button ng-click="login($event)" class="btn btn-lg btn-primary" type="button">Sign In</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

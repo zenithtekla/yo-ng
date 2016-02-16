@@ -9,6 +9,8 @@
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" />
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -23,10 +25,13 @@
     <!-- Add your site or application content here -->
     <div class="header">
       <header ng-include="'views/nav.html'"></header>
+      <header ng-include="'views/simple.html'"></header>
+      <!-- it may be better to include header in a content wrapper ~ container div-->
     </div>
 
-    <div class="container">
-    <div ui-view=""></div>
+    <div class="container-fluid text-center">
+      <!--<div class="template-modal" ng-include="'template.url"></div>-->
+      <div ui-view=""></div>
     </div>
 
     <div class="footer">
@@ -54,14 +59,25 @@
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="bower_components/firebase/firebase.js"></script>
+    <script src="bower_components/angularfire/dist/angularfire.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/lodash/lodash.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/api.js"></script>
+        <!--<script src="scripts/controllers/login.js"></script>-->
+        <!--<script src="scripts/ng-fire.js"></script>-->
+        <script src="scripts/controllers/ds1.js"></script>
+        <script src="scripts/controllers/ds2.js"></script>
+        <script src="scripts/controllers/ds3.js"></script>
+        <script src="scripts/controllers/ds4.js"></script>
+        <script src="scripts/controllers/ds5.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/about.js"></script>
         <!-- endbuild -->
