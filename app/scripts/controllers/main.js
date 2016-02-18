@@ -167,7 +167,7 @@ angular.module('workspaceApp')
       if (Auth.ref_ds1.getAuth()) return;
       Auth.authObj.$authWithOAuthPopup("google").then(function(authData) {
         console.log("Logged in as:", authData.uid);
-        $location.path('#');
+        $location.path('/');
         // there must be a better way to load data on login without reloading the whole page.
         // $location.url('/module/:module');
       }).catch(function(error) {
@@ -197,7 +197,7 @@ angular.module('workspaceApp')
       modalInstance.result.then(function(user){
         $scope.greeting = user.greeting;
         console.log( "modalInstance.result ", $scope.greeting);
-        $location.path('#');
+        $location.path('/');
       }, function(){
         $log.info('Modal dismissed at: ' + new Date());
       });
