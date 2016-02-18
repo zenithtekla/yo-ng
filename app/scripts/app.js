@@ -21,7 +21,8 @@ angular
     'firebase'
   ])
   .config(['$urlRouterProvider', '$stateProvider', function($urlRouterProvider, $stateProvider) {
-  $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.when('', '/');  
+  $urlRouterProvider.otherwise('/404');
   $stateProvider
     .state('main', {
       url: '/',
@@ -90,6 +91,10 @@ angular
     .state('contact', {
       url: '/contact',
       templateUrl: 'views/contact.html'
+    })
+    .state('404', {
+      url: '/404',
+      templateUrl: '/404.html'
     })
     /*.state('login', {
       url: '/login',
