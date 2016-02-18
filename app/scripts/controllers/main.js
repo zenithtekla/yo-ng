@@ -176,6 +176,7 @@ angular.module('workspaceApp')
     };
     
     $scope.logout = function($event){ $event.preventDefault();
+      if (!Auth.ref_ds1.getAuth()) return;
       Auth.authObj.$unauth();
       window.location.reload(false);
     };
@@ -183,7 +184,7 @@ angular.module('workspaceApp')
     $scope.openModal = function(size){
       var modalInstance = $uibModal.open({
         animation: true,
-        templateUrl: 'oneModalContent.html',
+        templateUrl: 'oneModalContent.jade',
         controller: 'ModalInstCtrl',
         size: '',
         resolve: {

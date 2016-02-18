@@ -1,5 +1,75 @@
+<div class="modal fade" id="authModal" role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content">              
+      <div class="modal-body">
+        <form class="form-signin" role="form">
+          <input ng-model="user.email" type="email" class="form-control" placeholder="Email address" required="" autofocus="">
+          <input ng-model="user.password" type="password" class="form-control" placeholder="Password" required="">
+          <div class="checkbox checkbox-success">
+            <input ng-model="checkbox.signup" ng-init="checkbox.signup=false" type="checkbox">
+            <label> Sign Up for first-timer </label>
+          </div>
+          <div class="text-center">
+          <button ng-click="login($event)" class="btn btn-lg btn-primary" type="button">Sign In</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-header">
+  <button type="button" class="close" ng-click="close()" data-dismiss="modal">&times;</button>
+  <h4 class="modal-title">Modes d'accès</h4>
+  <h3>
+    <span ng-bind="user.greeting" ng-init="user.greeting=''" class ="text-warning">{{user.greeting}}</span>
+  </h3>
+</div>
+<div class="modal-body">
+  <form class="form-signin" role="form">
+    <input ng-model="user.email" type="email" class="form-control" placeholder="Email address" required="" autofocus="">
+    <input ng-model="user.password" type="password" class="form-control" placeholder="Password" required="">
+    <em>
+      <span ng-bind="user.alert" ng-init="user.alert=''" class ="text-warning">* {{user.alert}}</span>
+    </em>
+    <label class="checkbox">
+      <a href="#"> Forgot your password?</></a>
+      <div class="pull-right">
+        <button type="reset" class="btn btn-link">Reset</button>
+      </div>
+    </label>
+    <div class="checkbox checkbox-success">
+      <input ng-model="checkbox.signup" ng-init="checkbox.signup=false" type="checkbox">
+      <label> Sign Up for first-timer </label>
+    </div>
+    <div class="checkbox checkbox-primary">
+      <input ng-model="checkbox.remember" ng-init="checkbox.remember=false" value={{checkbox.remember}} type="checkbox">
+      <label> Remember me </label>
+    </div>
+    <div class="text-center">
+      <button ng-click="signup($event)" class="btn btn-lg btn-success" type="button">Sign Up</button>
+      <button ng-click="login($event)" class="btn btn-lg btn-primary" type="button">Sign In</button>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <div class="center-block">
+    <div class="pull-left">
+      <span class="fa fa-copyright"> Powered by Zetek 2016</span>
+    </div>
+    <div class="pull-right">
+      <button ng-click="close()" type="button" class="btn btn-default" data-dismiss="modal">
+        Close <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+
 <div ng-controller="ModalViewInit">
-  <script type="text/ng-template" id="oneModalContent.jade">
+  <script type="text/ng-template" id="oneModalContent.html">
     <div class="modal-header">
       <button type="button" class="close" ng-click="close()" data-dismiss="modal">&times;</button>
       <h4 class="modal-title">Modes d'accès</h4>
@@ -68,4 +138,4 @@
       </div>
     </div>
   </div>
-</div> 
+</div>
