@@ -8,7 +8,7 @@ div(ng-controller='TplCtrl')
 input(type='text', ng-model='myText')
 | {{myText}}
 br
-select(ng-model='ds3.selectedValue', ng-options='value for value in ds3.items')
+select(ng-model='ds13.selectedValue', ng-options='value for value in ds13.items')
 .table-responsive
   table.table.table-bordered.table-striped
     thead.thead-inverse
@@ -27,7 +27,7 @@ select(ng-model='ds3.selectedValue', ng-options='value for value in ds3.items')
         th  {{ tpl_data.date_completed }} 
         th  {{ tpl_data.time_completed }} 
     tbody
-      tr(ng-repeat='entry in ds3.entries')
+      tr(ng-repeat='entry in ds13.entries')
         td  {{ entry.customer }} 
         td  {{ entry.assembly }} 
         td  {{ entry.date_received }} 

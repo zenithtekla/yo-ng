@@ -15,14 +15,38 @@
         li
           a(ui-sref-active='active', ui-sref='main') Home
         li
-          a(ui-sref-active='active', ui-sref='datasheet1') DataSheet1
+          .btn-group(uib-dropdown='', keyboard-nav='', dropdown-append-to='appendToEl')
+            button#btn-append-to.btn.btn-primary(type='button', uib-dropdown-toggle='')
+              | Flowcharts 
+              span.caret
+            ul.dropdown-menu(uib-dropdown-menu='', role='menu', aria-labelledby='btn-append-to')
+              li(role='menuitem')
+                a(ui-sref-active='active', ui-sref='datasheet1') Flowchart Request
+              li(role='menuitem')
+                a(ui-sref-active='active', ui-sref='datasheet2') New Prototype Flowchart
+              li(role='menuitem')
+                a(ui-sref-active='active', ui-sref='datasheet3') Panel array drawing
+              li(role='menuitem')
+                a(ui-sref-active='active', ui-sref='datasheet4') Time study log
+              li.divider
+              li(role='menuitem')
+                a(ui-sref-active='active', ui-sref='datasheet5') Flowchart request for insufficient info
         li
-          a(ui-sref-active='active', ui-sref='datasheet2') DataSheet2
-        li
-          a(ui-sref-active='active', ui-sref='datasheet3') DataSheet3
-        li
-          a(ui-sref-active='active', ui-sref='datasheet4') DataSheet4
-        li
-          a(ui-sref-active='active', ui-sref='datasheet5') DataSheet5
+          .btn-group(uib-dropdown='', keyboard-nav='', dropdown-append-to='appendToEl')
+            button#btn-append-to.btn(type='button', uib-dropdown-toggle='')
+              | References 
+              span.caret
+            ul.dropdown-menu(uib-dropdown-menu='', role='menu', aria-labelledby='btn-append-to')
+              li(role='menuitem')
+                a(ui-sref-active='active', ui-sref='datasheet12') DataSheet12
+              li(role='menuitem')
+                a(ui-sref-active='active', ui-sref='datasheet13') DataSheet13
+              li(role='menuitem')
+                a(ui-sref-active='active', ui-sref='datasheet14') DataSheet14
+              li.divider
+              li(role='menuitem')
+                a(ui-sref-active='active', ui-sref='datasheet15') DataSheet15
         li
           a(ui-sref-active='active', ui-sref='about') About
+        li
+          a.btn.btn-default.btn-sm(type='button', ui-sref-active='active', ui-sref='404') Back2Mantis

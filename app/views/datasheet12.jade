@@ -1,7 +1,7 @@
 h3 {{ tpl_data.title}}
 br
 .table-responsive
-  table#divToPrint.table.table-bordered.table-striped.table-condensed
+  table.table.table-bordered.table-striped.table-condensed
     thead
       tr
         th(colspan='2')
@@ -9,7 +9,7 @@ br
           span(ng-show='query') Search for "{{query}}"
           span(ng-show='!query') Search...
         th
-          select(ng-model='ds2.selectedValue', ng-options='value for value in ds2.items')
+          select(ng-model='ds12.selectedValue', ng-options='value for value in ds12.items')
         th
           a(href='#') <<
           |             
@@ -28,10 +28,10 @@ br
           button.btn-xs.btn-primary(ng-click='refresh()')
             span.glyphicon.glyphicon-refresh
             |                 Refresh (F7)
-          button.btn-xs.btn-primary(ng-click='export()')
+          button.btn-xs.btn-primary(ng-click='save()')
             span.glyphicon.glyphicon-floppy-disk
             |                 Save (F8)
-          button.btn-xs.btn-primary(ng-click="printDiv('divToPrint')")
+          button.btn-xs.btn-primary(ng-click='export()')
             span.glyphicon.glyphicon-print
             |                 Print (F9)
       tr
@@ -51,22 +51,21 @@ br
         th  {{ tpl_data.time_completed }} 
         th  {{ tpl_data.action }} 
     tbody
-      tr(ng-repeat='entry in ds2.entries | filter:query')
+      tr(ng-repeat='entry in ds12.entries | filter:query')
         td
-          input(type='text', ng-model='entry.customer', ng-change='ds2.entries.$save(entry)')
+          input(type='text', ng-model='entry.customer', ng-change='ds12.entries.$save(entry)')
         td
-          input(type='text', ng-model='entry.assembly', ng-change='ds2.entries.$save(entry)')
+          input(type='text', ng-model='entry.assembly', ng-change='ds12.entries.$save(entry)')
         td
-          input(type='text', ng-model='entry.date_received', ng-change='ds2.entries.$save(entry)')
+          input(type='text', ng-model='entry.date_received', ng-change='ds12.entries.$save(entry)')
         td
-          input(type='text', ng-model='entry.time_received', ng-change='ds2.entries.$save(entry)')
+          input(type='text', ng-model='entry.time_received', ng-change='ds12.entries.$save(entry)')
         td
-          input(type='text', ng-model='entry.date_completed', ng-change='ds2.entries.$save(entry)')
+          input(type='text', ng-model='entry.date_completed', ng-change='ds12.entries.$save(entry)')
         td
-          input(type='text', ng-model='entry.time_completed', ng-change='ds2.entries.$save(entry)')
+          input(type='text', ng-model='entry.time_completed', ng-change='ds12.entries.$save(entry)')
         td
-          button.btn-xs.btn-danger(ng-click='ds2.entries.$remove(entry)')
-            span.fa.fa-trash-o.fa-sm
+          button.btn-xs.btn-danger(ng-click='ds12.entries.splice($index,1)') -
       tr
         td
           input(type='text', ng-model='new_entry.customer')
@@ -81,6 +80,4 @@ br
         td
           input(type='text', ng-model='new_entry.time_completed')
         td
-          button.btn-xs.btn-success(ng-click='insert()')
-            span.fa.fa-plus-square
-            |   Insert
+          button.btn-xs.btn-success(ng-click='insert()') Insert

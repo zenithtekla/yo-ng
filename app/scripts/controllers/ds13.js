@@ -2,15 +2,24 @@
 
 /**
  * @ngdoc function
- * @name workspaceApp.controller:DataSheet5
+ * @name workspaceApp.controller:DataSheet13
  * @description
- * # DataSheet5
+ * # DataSheet13
  * Controller of the workspaceApp
  */
 angular.module('workspaceApp')
-  .controller('DataSheet5', ['$scope', 'data', function ($scope, data) {
+  .controller('TplCtrl', function($scope){
+    // loading templates, modal templates
+    $scope.mydata = 'common data';
+    $scope.templates = [
+      { name: 'md1.html', url: 'views/modals/md1.html'},
+      { name: 'md2.html', url: 'views/modals/md2.html'}
+    ];
+    $scope.template = $scope.templates[0];
+  })
+  .controller('DataSheet13', ['$scope', 'data', function ($scope, data) {
     $scope.tpl_data = {
-      title: 'DataSheet5 - Flowchart Request',
+      title: 'DataSheet13 - Flowchart Request',
       txt: {
         start: 'start',
         end: 'end',
@@ -26,11 +35,11 @@ angular.module('workspaceApp')
       date_completed: 'date_completed',
       time_completed: 'time_completed'
     };
-    $scope.ds5 = {
+    $scope.ds13 = {
         entries: data,
         fn: 'custom_func',
         items: ['first', 'second', 'third'],
         selectedValue: 'first'
     };
-    // console.log(JSON.stringify($scope.ds5.entries, null, "\t"));
+    // console.log(JSON.stringify($scope.ds13.entries, null, "\t"));
 }]);

@@ -3,20 +3,20 @@
 
 /**
  * @ngdoc function
- * @name workspaceApp.controller:DataSheet4
+ * @name workspaceApp.controller:DataSheet14
  * @description
- * # DataSheet4
+ * # DataSheet14
  * Controller of the workspaceApp
  */
 angular.module('workspaceApp')
-  .controller('DataSheet4', ['$scope', 'preload', 'Alchemy', '$firebaseArray', function ($scope, preload, Alchemy, $firebaseArray) {
-    $scope.ds4 = {
+  .controller('DataSheet14', ['$scope', 'preload', 'Alchemy', '$firebaseArray', function ($scope, preload, Alchemy, $firebaseArray) {
+    $scope.ds14 = {
       entries: preload.get(),
       fn: 'custom_func',
       items: ['first', 'second', 'third'],
       selectedValue: 'first',
       data: {
-        title: 'DataSheet4 - Flowchart Request',
+        title: 'DataSheet14 - Flowchart Request',
         start_date:"07-02-2015",
         end_date:"07-19-2015",
         total:16
@@ -24,7 +24,7 @@ angular.module('workspaceApp')
     };
     
     Alchemy.rune().then(function(data) {
-      $scope.tpl_data = Object.assign(data,$scope.ds4.data);
+      $scope.tpl_data = Object.assign(data,$scope.ds14.data);
     });
     
     $scope.new_entry = {
@@ -38,7 +38,7 @@ angular.module('workspaceApp')
 
     $scope.insert = function(){
       console.log(angular.toJson($scope.new_entry));
-      $scope.ds4.entries.$add($scope.new_entry);
+      $scope.ds14.entries.$add($scope.new_entry);
       $scope.new_entry = {
           customer: '',
           assembly: '',

@@ -8,79 +8,16 @@
  * # DataSheet2
  * Controller of the workspaceApp
  */
+
 angular.module('workspaceApp')
-  .factory('Alchemy', ['$http', function($http){
-    return {
-      rune: function(){
-        return $http.get('/api/tpl_data.json').then(function(response) {
-            return response.data;
-        });
-      },
-      fusion: function (data) {
-        var fn = {
-          filter: function(){
-            var idx = Object.keys(data[0]);
-            if (idx[idx.length-1].indexOf("hash") > -1)
-              idx.pop();
-            var o = {};
-            for (var tag of idx){
-              o[tag] = [];
-              data.map(function(d){
-                o[tag].push(d[tag]);
-              });
-            }
-            return o;
-          },
-          ls_customer_nf: function(){
-            return data.map(function(d){
-              var a = [];
-              a.push(d.customer);
-              return a;
-            });
-              // return data.customer.valueOf(); // favored for listing
-          },
-          ls_customer: function(){
-            return data.customer;
-          },
-          customer: function(x){
-            if (typeof x === 'object') {
-              x = x || {};
-              data.customer = data.customer.concat(x);
-              return data.customer;
-            } else
-              return data.customer[x];
-          },
-          del_customer: function(x, y){
-            y = y || 1;
-            return data.customer.splice(x,y);
-          },
-          ls_assembly: function(){
-            return data.assembly;
-          },
-          assembly: function(x){
-            if (typeof x === 'object') {
-              data.assembly = data.assembly.concat(x);
-              return data.assembly;
-            } else
-              return data.assembly[x];
-          },
-          del_assembly: function(x, y){
-            y = y || 1;
-            return data.assembly.splice(x,y);
-          }
-        };
-        return fn;
-      }
-    };
-  }])
-  .controller('DataSheet2', ['$scope', 'data', 'Alchemy', function ($scope, data, Alchemy) {
+  .controller('DataSheet2', ['$scope', '$location', 'preload', 'Alchemy', function ($scope, $location, preload, Alchemy) {
     $scope.ds2 = {
-      entries: data,
+      entries: preload.get(),
       fn: 'custom_func',
       items: ['first', 'second', 'third'],
       selectedValue: 'first',
       data: {
-        title: 'DataSheet2 - Flowchart Request!',
+        title: 'DataSheet2 - New Prototype Flowchart',
         start_date:"07-02-2015",
         end_date:"07-19-2015",
         total:16
@@ -100,7 +37,7 @@ angular.module('workspaceApp')
       time_completed: ''
     };
     
-  /* // # Custom methods - Alchemy.fusion(data).method()
+  /* // # Alchemy custom methods - Alchemy.fusion(data).method()
     // Method with non-filtered (nf) data
     console.log(Alchemy.fusion($scope.ds2.entries).ls_customer_nf());
     
@@ -112,11 +49,28 @@ angular.module('workspaceApp')
   */
     
     $scope.save = function(){
-      // $scope.ds2.entries
     };
+    
+    $scope.refresh = function(){
+      location.reload("/datasheet2");
+    };
+    
+    $scope.export = function(){
+      
+    };
+    
+    $scope.printDiv = function(divName) {
+      var printContents = document.getElementById(divName).innerHTML;
+      var popupWin = window.open('', '_blank', 'width=300,height=300');
+      popupWin.document.open();
+      popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" href="style.css" /></head><body onload="window.print()">' + printContents + '</body></html>');
+      popupWin.document.close();
+    };
+    
     $scope.insert = function(){
       console.log(angular.toJson($scope.new_entry));
-      $scope.ds2.entries = $scope.ds2.entries.concat($scope.new_entry);
+      // $scope.ds2.entries = $scope.ds2.entries.concat($scope.new_entry);
+      $scope.ds2.entries.$add($scope.new_entry);
       $scope.new_entry = {
           customer: '',
           assembly: '',
@@ -127,4 +81,6 @@ angular.module('workspaceApp')
       };
     };
 }]);
+
+
 })(window.angular);

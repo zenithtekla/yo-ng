@@ -37,6 +37,7 @@ angular
     .state('datasheet1', {
       // abstract: true,
       url: '/datasheet1',
+      name: 'ds1',
       // see ui-route for multiple & Named Views
       templateUrl: 'views/datasheet1.html',
       controller: 'DataSheet1',
@@ -49,40 +50,61 @@ angular
     })
     .state('datasheet2', {
       url: '/datasheet2',
+      name: 'ds2',
       templateUrl: 'views/datasheet2.html',
       controller: 'DataSheet2',
       resolve: {
         data : ['$http', function($http){
           return $http.get('/api/data.json').then(function(response){
+            console.log('// data.json XHR');
             return response.data;
           });
         }]
       }
     })
-    .state('datasheet3', {
-      url: '/datasheet3',
-      templateUrl: 'views/datasheet3.html',
-      controller: 'DataSheet3',
+    .state('datasheet12', {
+      url: '/datasheet12',
+      name: 'ds12',
+      templateUrl: 'views/datasheet12.html',
+      controller: 'DataSheet12',
       resolve: {
         data : ['$http', function($http){
           return $http.get('/api/data.json').then(function(response){
+            console.log('// data.json XHR');
             return response.data;
           });
         }]
       }
     })
-    .state('datasheet4', {
-      url: '/datasheet4',
-      templateUrl: 'views/datasheet4.html',
-      controller: 'DataSheet4'
-    })
-    .state('datasheet5', {
-      url: '/datasheet5',
-      templateUrl: 'views/datasheet5.html',
-      controller: 'DataSheet5',
+    .state('datasheet13', {
+      url: '/datasheet13',
+      name: 'ds13',
+      templateUrl: 'views/datasheet13.html',
+      controller: 'DataSheet13',
       resolve: {
         data : ['$http', function($http){
           return $http.get('/api/data.json').then(function(response){
+            console.log('// data.json XHR');
+            return response.data;
+          });
+        }]
+      }
+    })
+    .state('datasheet14', {
+      url: '/datasheet14',
+      name: 'ds14',
+      templateUrl: 'views/datasheet14.html',
+      controller: 'DataSheet14'
+    })
+    .state('datasheet15', {
+      url: '/datasheet15',
+      name: 'ds15',
+      templateUrl: 'views/datasheet15.html',
+      controller: 'DataSheet15',
+      resolve: {
+        data : ['$http', function($http){
+          return $http.get('/api/data.json').then(function(response){
+            console.log('// data.json XHR');
             return response.data;
           });
         }]

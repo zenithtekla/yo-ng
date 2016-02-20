@@ -2,7 +2,7 @@ h3 {{ tpl_data.title}}
 input(type='text', ng-model='myText')
 | {{myText}}
 br
-select(ng-model='ds5.selectedValue', ng-options='value for value in ds5.items')
+select(ng-model='ds15.selectedValue', ng-options='value for value in ds15.items')
 .table-responsive
   table.table.table-bordered.table-striped
     thead.thead-inverse
@@ -21,7 +21,7 @@ select(ng-model='ds5.selectedValue', ng-options='value for value in ds5.items')
         th  {{ tpl_data.date_completed }} 
         th  {{ tpl_data.time_completed }} 
     tbody
-      tr(ng-repeat='entry in ds5.entries')
+      tr(ng-repeat='entry in ds15.entries')
         td  {{ entry.customer }} 
         td  {{ entry.assembly }} 
         td  {{ entry.date_received }} 

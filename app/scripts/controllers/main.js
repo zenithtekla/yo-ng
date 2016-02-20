@@ -10,6 +10,10 @@
  */
 angular.module('workspaceApp')
   .constant('FirebaseUrl_dataSet1', 'https://zetek.firebaseio.com/ds1')
+  .constant('FirebaseUrl_dataSet2', 'https://zetek.firebaseio.com/ds2')
+  .constant('FirebaseUrl_dataSet3', 'https://zetek.firebaseio.com/ds3')
+  .constant('FirebaseUrl_dataSet4', 'https://zetek.firebaseio.com/ds4')
+  .constant('FirebaseUrl_dataSet5', 'https://zetek.firebaseio.com/ds5')
   .factory('Alchemy', ['$http', function($http){
     return {
       rune: function(){
@@ -74,55 +78,20 @@ angular.module('workspaceApp')
       }
     };
   }])
-  .factory('Auth', function ($firebaseAuth, FirebaseUrl_dataSet1, $q) {
+  .factory('Auth_datasheet1', function ($location, $firebaseAuth, FirebaseUrl_dataSet1, $q) {
     /* global Firebase */
+    console.log($location.path());
     var service = {};
-    service.ref_ds1 = new Firebase(FirebaseUrl_dataSet1);
-    service.authObj = $firebaseAuth(service.ref_ds1);
-    /*service.login = function(user){
-      var deferred = $q.defer();
-      service.ref_ds1.authWithPassword(user).then(function(authData) {
-        console.log(authData);
-        // authData.email = $scope.user.email;
-        var str = user.email.split("@")[0] + "!";
-        console.log(str);
-        fn.greet(", welcome " + str);
-        document.getElementById("test").innerHTML = "my text [" + user.email.split("@")[0] + " ]";
-        // window.location.reload(true);
-      }).catch(function(error) {
-          fn.alert(error);
-          cb();
-      });
-    };*/
+    service.ref = new Firebase(FirebaseUrl_dataSet1);
+    service.authObj = $firebaseAuth(service.ref);
     return service;
   })
-  /*.factory('AuthIn', ['Auth', "$q", function (Auth, $q){
-    var service = {
-      login: function(user){
-        var deferred = $q.defer();
-        service.ref_ds1.authWithPassword({
-          email: user.email,
-          password: user.password
-          }, function(authData) {
-          console.log(authData);
-          // authData.email = $scope.user.email;
-          var str = user.email.split("@")[0] + "!";
-          console.log(str);
-          fn.greet(", welcome " + str);
-          document.getElementById("test").innerHTML = "my text [" + user.email.split("@")[0] + " ]";
-          // window.location.reload(true);
-        }).catch(function(error) {
-            fn.alert(error);
-            cb();
-        });
-      }
-    };
-  }])*/
-  .factory('preload', ['Auth', '$firebaseArray', function (Auth, $firebaseArray) {
+  .factory('preload', ['Auth_datasheet1', '$firebaseArray', function (Auth_datasheet1, $firebaseArray) {
     var service;
-    Auth.ref_ds1.onAuth(function(authData){
+    Auth_datasheet1.ref.onAuth(function(authData){
       if (authData) {
-        service = $firebaseArray(Auth.ref_ds1);
+        console.log('// preload XHR');
+        service = $firebaseArray(Auth_datasheet1.ref);
         var str = (authData.email) ? authData.email : authData.uid;
         console.log("User " + str + " is logged in with " + authData.provider);
       } else {
@@ -135,6 +104,25 @@ angular.module('workspaceApp')
       }
     };
   }])
+  
+  /*return {
+    getWeather: function() {
+        // the $http API is based on the deferred/promise APIs exposed by the $q service
+        // so it returns a promise for us by default
+        return $http.get('http://fishing-weather-api.com/sunday/afternoon')
+            .then(function(response) {
+                if (typeof response.data === 'object') {
+                    return response.data;
+                } else {
+                    // invalid response
+                    return $q.reject(response.data);
+                }
+            }, function(response) {
+                // something went wrong
+                return $q.reject(response.data);
+            });
+    }
+  };*/
 /*  .controller('ModalInit', function($scope, $uibModal, $log){
     $scope.items = ['item1', 'item2', 'item3'];
     $scope.animationsEnabled = true;
@@ -162,10 +150,10 @@ angular.module('workspaceApp')
       $scope.animationsEnabled = !$scope.animationsEnabled;
     };
   })*/
-  .controller('ModalViewInit', function($scope, $location, $uibModal, Auth, $log){
+  .controller('ModalViewInit', function($scope, $location, $uibModal, Auth_datasheet1, $log){
     $scope.login_google = function($event){ $event.preventDefault();
-      if (Auth.ref_ds1.getAuth()) return;
-      Auth.authObj.$authWithOAuthPopup("google").then(function(authData) {
+      if (Auth_datasheet1.ref.getAuth()) return;
+      Auth_datasheet1.authObj.$authWithOAuthPopup("google").then(function(authData) {
         console.log("Logged in as:", authData.uid);
         $location.path('/');
         // there must be a better way to load data on login without reloading the whole page.
@@ -176,8 +164,8 @@ angular.module('workspaceApp')
     };
     
     $scope.logout = function($event){ $event.preventDefault();
-      if (!Auth.ref_ds1.getAuth()) return;
-      Auth.authObj.$unauth();
+      if (!Auth_datasheet1.ref.getAuth()) return;
+      Auth_datasheet1.authObj.$unauth();
       window.location.reload(false);
     };
     
@@ -203,7 +191,7 @@ angular.module('workspaceApp')
       });
     };
   })
-  .controller('ModalInstCtrl', ['$scope', 'Auth', '$q', '$uibModalInstance', function ($scope, Auth, $q, $uibModalInstance) {
+  .controller('ModalInstCtrl', ['$scope', 'Auth_datasheet1', '$q', '$uibModalInstance', function ($scope, Auth_datasheet1, $q, $uibModalInstance) {
     $scope.user = {};
   
     $scope.close = function () {
@@ -242,7 +230,7 @@ angular.module('workspaceApp')
           return;
         }
         if (fn.valid_email(user.email))
-        Auth.ref_ds1.createUser(user, function(error, userData) {
+        Auth_datasheet1.ref.createUser(user, function(error, userData) {
           if (error) {
             fn.alert("Error creating user: " + error);
           } else {
@@ -251,14 +239,14 @@ angular.module('workspaceApp')
         });
       },
       login: function(user, cb){
-        if (Auth.ref_ds1.getAuth()) return;
+        if (Auth_datasheet1.ref.getAuth()) return;
         
         if (!user.password) {
           fn.alert("please type password");
           return;
         }
         if (fn.valid_email(user.email))
-        Auth.ref_ds1.authWithPassword(user).then(function(authData) {
+        Auth_datasheet1.ref.authWithPassword(user).then(function(authData) {
           // authData.email = $scope.user.email;
           $scope.user.name = user.email.split("@")[0] + "!";
           fn.greet("welcome " + $scope.user.name);
@@ -304,7 +292,7 @@ angular.module('workspaceApp')
       $uibModalInstance.dismiss('cancel');
     };
   })*/
-  .controller('MainCtrl', ['$scope', 'Auth', '$q', function ($scope, Auth, $q) {
+  .controller('MainCtrl', ['$scope', 'Auth_datasheet1', '$q', function ($scope, Auth_datasheet1, $q) {
 
     /*$scope.openModal = function($event, size){
       $event.preventDefault();

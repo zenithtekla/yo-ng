@@ -9,7 +9,7 @@ br
           span(ng-show='query') Search for "{{query}}"
           span(ng-show='!query') Search...
         th
-          select(ng-model='ds4.selectedValue', ng-options='value for value in ds4.items')
+          select(ng-model='ds14.selectedValue', ng-options='value for value in ds14.items')
         th
           a(href='#') <<
           |             
@@ -51,21 +51,21 @@ br
         th  {{ tpl_data.time_completed }} 
         th  {{ tpl_data.action }} 
     tbody
-      tr(ng-repeat='entry in ds4.entries | filter:query')
+      tr(ng-repeat='entry in ds14.entries | filter:query')
         td
-          input(type='text', ng-model='entry.customer', ng-change='ds4.entries.$save(entry)')
+          input(type='text', ng-model='entry.customer', ng-change='ds14.entries.$save(entry)')
         td
-          input(type='text', ng-model='entry.assembly', ng-change='ds4.entries.$save(entry)')
+          input(type='text', ng-model='entry.assembly', ng-change='ds14.entries.$save(entry)')
         td
-          input(type='text', ng-model='entry.date_received', ng-change='ds4.entries.$save(entry)')
+          input(type='text', ng-model='entry.date_received', ng-change='ds14.entries.$save(entry)')
         td
-          input(type='text', ng-model='entry.time_received', ng-change='ds4.entries.$save(entry)')
+          input(type='text', ng-model='entry.time_received', ng-change='ds14.entries.$save(entry)')
         td
-          input(type='text', ng-model='entry.date_completed', ng-change='ds4.entries.$save(entry)')
+          input(type='text', ng-model='entry.date_completed', ng-change='ds14.entries.$save(entry)')
         td
-          input(type='text', ng-model='entry.time_completed', ng-change='ds4.entries.$save(entry)')
+          input(type='text', ng-model='entry.time_completed', ng-change='ds14.entries.$save(entry)')
         td
-          button.btn-xs.btn-danger(ng-click='ds4.entries.$remove(entry)') -
+          button.btn-xs.btn-danger(ng-click='ds14.entries.$remove(entry)') -
       tr
         td
           input(type='text', ng-model='new_entry.customer')
