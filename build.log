@@ -1,0 +1,19 @@
+TODOs:
+02/29/16
+- sanitization : options to perform prune, truncate tasks when changes need to be made on many entries
+- reviewing build script and Grunt tasks.
+- finalizing
+
+02/26/16
+- add FirebaseURL db to save all user actions
+- add a view to display user actions by date
+- more attempt to convert md.html to .jade file? 
+
+02/24/16
+- add fields for ds2,3,4,5
+- verify FirebaseURLs
+- link data
+- find start_date and end_date from data
+- fix print fn, need to flat input data for printing
+- pagination
+- save btn => force download a screenshot copy.

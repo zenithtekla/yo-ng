@@ -17,8 +17,8 @@ angular.module('workspaceApp')
       selectedValue: 'first',
       data: {
         title: 'DataSheet14 - Flowchart Request',
-        start_date:"07-02-2015",
-        end_date:"07-19-2015",
+        start_date:"07/02/2015",
+        end_date:"07/19/2015",
         total:16
       }
     };

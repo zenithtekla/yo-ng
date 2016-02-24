@@ -16,8 +16,8 @@ angular.module('workspaceApp')
         end: 'end',
         total: 'total'
       },
-      start_date: '07-02-2015',
-      end_date: '07-19-2015',
+      start_date: '07/02/2015',
+      end_date: '07/19/2015',
       total: 16,
       customer: 'customer',
       assembly: 'assembly',

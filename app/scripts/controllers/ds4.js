@@ -3,21 +3,21 @@
 
 /**
  * @ngdoc function
- * @name workspaceApp.controller:DataSheet1
+ * @name workspaceApp.controller:DataSheet4
  * @description
- * # DataSheet1
+ * # DataSheet4
  * Controller of the workspaceApp
  */
 
 angular.module('workspaceApp')
-  .controller('DataSheet1', ['$scope', '$location', 'preload', 'Alchemy', function ($scope, $location, preload, Alchemy) {
-    $scope.ds1 = {
+  .controller('DataSheet4', ['$scope', '$location', 'preload', 'Alchemy', function ($scope, $location, preload, Alchemy) {
+    $scope.ds4 = {
       entries: preload.get(),
       fn: 'custom_func',
       items: ['first', 'second', 'third'],
       selectedValue: 'first',
       data: {
-        title: 'DataSheet1 - Flowchart Request',
+        title: 'DataSheet4 - Time study log',
         start_date:"07/02/2015",
         end_date:"07/19/2015",
         total:16
@@ -25,7 +25,7 @@ angular.module('workspaceApp')
     };
     
     Alchemy.rune().then(function(data) {
-      $scope.tpl_data = Object.assign(data,$scope.ds1.data);
+      $scope.tpl_data = Object.assign(data,$scope.ds4.data);
     });
     
     $scope.new_entry = {
@@ -39,10 +39,10 @@ angular.module('workspaceApp')
     
   /* // # Alchemy custom methods - Alchemy.fusion(data).method()
     // Method with non-filtered (nf) data
-    console.log(Alchemy.fusion($scope.ds1.entries).ls_customer_nf());
+    console.log(Alchemy.fusion($scope.ds4.entries).ls_customer_nf());
     
     // Methods with filter data 1- filter 2- exec method
-    var data_filtered = Alchemy.fusion($scope.ds1.entries).filter();
+    var data_filtered = Alchemy.fusion($scope.ds4.entries).filter();
     
     console.log(Alchemy.fusion(data_filtered).ls_customer());
     
@@ -52,7 +52,7 @@ angular.module('workspaceApp')
     };
     
     $scope.refresh = function(){
-      location.reload("/datasheet1");
+      location.reload("/datasheet4");
     };
     
     $scope.export = function(){
@@ -69,8 +69,8 @@ angular.module('workspaceApp')
     
     $scope.insert = function(){
       console.log(angular.toJson($scope.new_entry));
-      // $scope.ds1.entries = $scope.ds1.entries.concat($scope.new_entry);
-      $scope.ds1.entries.$add($scope.new_entry);
+      // $scope.ds4.entries = $scope.ds4.entries.concat($scope.new_entry);
+      $scope.ds4.entries.$add($scope.new_entry);
       $scope.new_entry = {
           customer: '',
           assembly: '',

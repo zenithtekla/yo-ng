@@ -62,6 +62,48 @@ angular
         }]
       }
     })
+    .state('datasheet3', {
+      url: '/datasheet3',
+      name: 'ds3',
+      templateUrl: 'views/datasheet3.html',
+      controller: 'DataSheet3',
+      resolve: {
+        data : ['$http', function($http){
+          return $http.get('/api/data.json').then(function(response){
+            console.log('// data.json XHR');
+            return response.data;
+          });
+        }]
+      }
+    })
+    .state('datasheet4', {
+      url: '/datasheet4',
+      name: 'ds4',
+      templateUrl: 'views/datasheet4.html',
+      controller: 'DataSheet4',
+      resolve: {
+        data : ['$http', function($http){
+          return $http.get('/api/data.json').then(function(response){
+            console.log('// data.json XHR');
+            return response.data;
+          });
+        }]
+      }
+    })
+    .state('datasheet5', {
+      url: '/datasheet5',
+      name: 'ds5',
+      templateUrl: 'views/datasheet5.html',
+      controller: 'DataSheet5',
+      resolve: {
+        data : ['$http', function($http){
+          return $http.get('/api/data.json').then(function(response){
+            console.log('// data.json XHR');
+            return response.data;
+          });
+        }]
+      }
+    })
     .state('datasheet12', {
       url: '/datasheet12',
       name: 'ds12',

@@ -1,3 +1,5 @@
+'use strict';
+
 var ajaxPost = function( _ ){
     var jqDeferred = $.ajax({
         type:"POST",

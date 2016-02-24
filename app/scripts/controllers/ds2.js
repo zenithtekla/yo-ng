@@ -18,8 +18,8 @@ angular.module('workspaceApp')
       selectedValue: 'first',
       data: {
         title: 'DataSheet2 - New Prototype Flowchart',
-        start_date:"07-02-2015",
-        end_date:"07-19-2015",
+        start_date:"07/02/2015",
+        end_date:"07/19/2015",
         total:16
       }
     };
