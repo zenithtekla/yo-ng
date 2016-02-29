@@ -11,7 +11,7 @@
 angular.module('workspaceApp')
   .controller('DataSheet14', ['$scope', 'preload', 'Alchemy', '$firebaseArray', function ($scope, preload, Alchemy, $firebaseArray) {
     $scope.ds14 = {
-      entries: preload.get(),
+      entries: preload.get('DataSheet3'),
       fn: 'custom_func',
       items: ['first', 'second', 'third'],
       selectedValue: 'first',

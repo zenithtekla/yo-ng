@@ -8,7 +8,7 @@
  * Controller of the workspaceApp
  */
 angular.module('workspaceApp')
-  .controller('TplCtrl', function($scope){
+  .controller('TplCtrl', ['$scope', function($scope){
     // loading templates, modal templates
     $scope.mydata = 'common data';
     $scope.templates = [
@@ -16,7 +16,7 @@ angular.module('workspaceApp')
       { name: 'md2.html', url: 'views/modals/md2.html'}
     ];
     $scope.template = $scope.templates[0];
-  })
+  }])
   .controller('DataSheet13', ['$scope', 'data', function ($scope, data) {
     $scope.tpl_data = {
       title: 'DataSheet13 - Flowchart Request',
