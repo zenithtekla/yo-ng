@@ -3,9 +3,9 @@
 
 /**
  * @ngdoc function
- * @name workspaceApp.controller:MainCtrl
+ * @name workspaceApp.controller:Auth factories
  * @description
- * # MainCtrl
+ * # Auth factories
  * Controller of the workspaceApp
  */
 angular.module('workspaceApp')

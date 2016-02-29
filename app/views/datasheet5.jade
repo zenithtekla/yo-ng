@@ -8,7 +8,7 @@ br
           input(type='text', ng-model='query')
           span(ng-show='query') Search for "{{query}}"
           span(ng-show='!query') Search...
-        th
+        th(colspan='4')
           select(ng-model='ds5.selectedValue', ng-options='value for value in ds5.items')
         th
           a(href='#') <<
@@ -24,7 +24,7 @@ br
           a(href='#') 100
           |             
           a(href='#') >>
-        th(colspan='3')
+        th(colspan='2')
           button.btn-xs.btn-primary(ng-click='refresh()')
             span.glyphicon.glyphicon-refresh
             |                 Refresh (F7)
@@ -38,17 +38,20 @@ br
         th  {{ tpl_data.txt.start }} 
         th  {{ tpl_data.start_date }} 
         th  {{ tpl_data.txt.end }} 
-        th  {{ tpl_data.end_date }} 
-        th  {{ tpl_data.txt.total }} 
-        th(colspan='2')  {{ tpl_data.total }} 
+        th  {{ tpl_data.end_date }}
+        th  {{ tpl_data.txt.total }}
+        th(colspan='1')  {{ tpl_data.total }} 
+        th(colspan='3')
     thead.thead-inverse
       tr
         th  {{ tpl_data.customer }} 
-        th  {{ tpl_data.assembly }} 
+        th  {{ tpl_data.assembly }}
+        th  {{ tpl_data.clarity_issue }} 
+        th  {{ tpl_data.deficiency_issue }}
         th  {{ tpl_data.date_received }} 
-        th  {{ tpl_data.time_received }} 
+        th  {{ tpl_data.time_received }}
         th  {{ tpl_data.date_completed }} 
-        th  {{ tpl_data.time_completed }} 
+        th  {{ tpl_data.time_completed }}
         th  {{ tpl_data.action }} 
     tbody
       tr(ng-repeat='entry in ds5.entries | filter:query')
@@ -56,6 +59,10 @@ br
           input(type='text', ng-model='entry.customer', ng-change='ds5.entries.$save(entry)')
         td
           input(type='text', ng-model='entry.assembly', ng-change='ds5.entries.$save(entry)')
+        td
+          input(type='text', ng-model='entry.clarity_issue', ng-change='ds5.entries.$save(entry)')
+        td
+          input(type='text', ng-model='entry.deficiency_issue', ng-change='ds5.entries.$save(entry)')  
         td
           input(type='text', ng-model='entry.date_received', ng-change='ds5.entries.$save(entry)')
         td
@@ -72,6 +79,10 @@ br
           input(type='text', ng-model='new_entry.customer')
         td
           input(type='text', ng-model='new_entry.assembly')
+        td
+          input(type='text', ng-model='new_entry.clarity_issue')
+        td
+          input(type='text', ng-model='new_entry.deficiency_issue')
         td
           input(type='text', ng-model='new_entry.date_received')
         td

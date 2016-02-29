@@ -11,6 +11,7 @@ br
         th
           select(ng-model='ds4.selectedValue', ng-options='value for value in ds4.items')
         th
+        th
           a(href='#') <<
           |             
           a(href='#') 1
@@ -24,7 +25,7 @@ br
           a(href='#') 100
           |             
           a(href='#') >>
-        th(colspan='3')
+        th(colspan='2')
           button.btn-xs.btn-primary(ng-click='refresh()')
             span.glyphicon.glyphicon-refresh
             |                 Refresh (F7)

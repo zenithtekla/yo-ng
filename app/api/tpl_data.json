@@ -13,5 +13,7 @@
    "date_completed":"date_completed",
    "time_completed":"time_completed",
    "scheduled_kickoff": "scheduled_kickoff",
-   "action":"Actions"
+   "action":"Actions",
+   "clarity_issue": "clarity Issue",
+   "deficiency_issue": "deficiency Issue"
 }
