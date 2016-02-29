@@ -12,7 +12,7 @@
 angular.module('workspaceApp')
   .controller('DataSheet1', ['$scope', '$location', 'preload', 'Alchemy', function ($scope, $location, preload, Alchemy) {
     $scope.ds1 = {
-      entries: preload.get(),
+      entries: preload.get('DataSheet1'),
       fn: 'custom_func',
       items: ['first', 'second', 'third'],
       selectedValue: 'first',
@@ -20,7 +20,7 @@ angular.module('workspaceApp')
         title: 'DataSheet1 - Flowchart Request',
         start_date:"07/02/2015",
         end_date:"07/19/2015",
-        total:16
+        total: 16
       }
     };
     
@@ -81,6 +81,5 @@ angular.module('workspaceApp')
       };
     };
 }]);
-
 
 })(window.angular);

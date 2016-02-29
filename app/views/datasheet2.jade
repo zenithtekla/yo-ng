@@ -46,9 +46,12 @@ br
         th  {{ tpl_data.customer }} 
         th  {{ tpl_data.assembly }} 
         th  {{ tpl_data.date_received }} 
-        th  {{ tpl_data.time_received }} 
+        th  {{ tpl_data.time_received }}
+        th  {{ tpl_data.pcb_received_date }} 
+        th  {{ tpl_data.pcb_received_time }}
         th  {{ tpl_data.date_completed }} 
         th  {{ tpl_data.time_completed }} 
+        th  {{ tpl_data.scheduled_kickoff }} 
         th  {{ tpl_data.action }} 
     tbody
       tr(ng-repeat='entry in ds2.entries | filter:query')
@@ -61,9 +64,15 @@ br
         td
           input(type='text', ng-model='entry.time_received', ng-change='ds2.entries.$save(entry)')
         td
+          input(type='text', ng-model='entry.pcb_received_date', ng-change='ds2.entries.$save(entry)')
+        td
+          input(type='text', ng-model='entry.pcb_received_time', ng-change='ds2.entries.$save(entry)')
+        td
           input(type='text', ng-model='entry.date_completed', ng-change='ds2.entries.$save(entry)')
         td
           input(type='text', ng-model='entry.time_completed', ng-change='ds2.entries.$save(entry)')
+        td
+          input(type='text', ng-model='entry.scheduled_kickoff', ng-change='ds2.entries.$save(entry)')
         td
           button.btn-xs.btn-danger(ng-click='ds2.entries.$remove(entry)')
             span.fa.fa-trash-o.fa-sm
@@ -77,9 +86,15 @@ br
         td
           input(type='text', ng-model='new_entry.time_received')
         td
+          input(type='text', ng-model='new_entry.pcb_received_date')
+        td
+          input(type='text', ng-model='new_entry.pcb_received_time')
+        td
           input(type='text', ng-model='new_entry.date_completed')
         td
           input(type='text', ng-model='new_entry.time_completed')
+        td
+          input(type='text', ng-model='new_entry.scheduled_kickoff')
         td
           button.btn-xs.btn-success(ng-click='insert()')
             span.fa.fa-plus-square

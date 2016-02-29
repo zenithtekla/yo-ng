@@ -12,7 +12,7 @@
 angular.module('workspaceApp')
   .controller('DataSheet5', ['$scope', '$location', 'preload', 'Alchemy', function ($scope, $location, preload, Alchemy) {
     $scope.ds5 = {
-      entries: preload.get(),
+      entries: preload.get('DataSheet5'),
       fn: 'custom_func',
       items: ['first', 'second', 'third'],
       selectedValue: 'first',

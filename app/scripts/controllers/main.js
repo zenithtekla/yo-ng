@@ -9,11 +9,6 @@
  * Controller of the workspaceApp
  */
 angular.module('workspaceApp')
-  .constant('FirebaseUrl_dataSet1', 'https://zetek.firebaseio.com/ds1')
-  .constant('FirebaseUrl_dataSet2', 'https://zetek.firebaseio.com/ds2')
-  .constant('FirebaseUrl_dataSet3', 'https://zetek.firebaseio.com/ds3')
-  .constant('FirebaseUrl_dataSet4', 'https://zetek.firebaseio.com/ds4')
-  .constant('FirebaseUrl_dataSet5', 'https://zetek.firebaseio.com/ds5')
   .factory('Alchemy', ['$http', function($http){
     return {
       rune: function(){
@@ -78,33 +73,7 @@ angular.module('workspaceApp')
       }
     };
   }])
-  .factory('Auth_datasheet1', function ($location, $firebaseAuth, FirebaseUrl_dataSet1, $q) {
-    /* global Firebase */
-    console.log($location.path());
-    var service = {};
-    service.ref = new Firebase(FirebaseUrl_dataSet1);
-    service.authObj = $firebaseAuth(service.ref);
-    return service;
-  })
-  .factory('preload', ['Auth_datasheet1', '$firebaseArray', function (Auth_datasheet1, $firebaseArray) {
-    var service;
-    Auth_datasheet1.ref.onAuth(function(authData){
-      if (authData) {
-        console.log('// preload XHR');
-        service = $firebaseArray(Auth_datasheet1.ref);
-        var str = (authData.email) ? authData.email : authData.uid;
-        console.log("User " + str + " is logged in with " + authData.provider);
-      } else {
-        console.log("User not logged in");
-      }
-    });
-    return {
-      get: function(){
-        return service;
-      }
-    };
-  }])
-  
+
   /*return {
     getWeather: function() {
         // the $http API is based on the deferred/promise APIs exposed by the $q service
@@ -150,10 +119,13 @@ angular.module('workspaceApp')
       $scope.animationsEnabled = !$scope.animationsEnabled;
     };
   })*/
-  .controller('ModalViewInit', function($scope, $location, $uibModal, Auth_datasheet1, $log){
+  .controller('ModalViewInit', 
+    ['$scope', '$location', '$uibModal', 'Auth_userAccess', '$log', 
+    function($scope, $location, $uibModal, Auth_userAccess, $log){
+    
     $scope.login_google = function($event){ $event.preventDefault();
-      if (Auth_datasheet1.ref.getAuth()) return;
-      Auth_datasheet1.authObj.$authWithOAuthPopup("google").then(function(authData) {
+      if (Auth_userAccess.ref.getAuth()) return;
+      Auth_userAccess.authObj.$authWithOAuthPopup("google").then(function(authData) {
         console.log("Logged in as:", authData.uid);
         $location.path('/');
         // there must be a better way to load data on login without reloading the whole page.
@@ -164,8 +136,8 @@ angular.module('workspaceApp')
     };
     
     $scope.logout = function($event){ $event.preventDefault();
-      if (!Auth_datasheet1.ref.getAuth()) return;
-      Auth_datasheet1.authObj.$unauth();
+      if (!Auth_userAccess.ref.getAuth()) return;
+      Auth_userAccess.authObj.$unauth();
       window.location.reload(false);
     };
     
@@ -190,8 +162,11 @@ angular.module('workspaceApp')
         $log.info('Modal dismissed at: ' + new Date());
       });
     };
-  })
-  .controller('ModalInstCtrl', ['$scope', 'Auth_datasheet1', '$q', '$uibModalInstance', function ($scope, Auth_datasheet1, $q, $uibModalInstance) {
+  }])
+  .controller('ModalInstCtrl', 
+    ['$scope', 'Auth_userAccess', '$q', '$uibModalInstance', 
+    function ($scope, Auth_userAccess, $q, $uibModalInstance) {
+    
     $scope.user = {};
   
     $scope.close = function () {
@@ -230,7 +205,7 @@ angular.module('workspaceApp')
           return;
         }
         if (fn.valid_email(user.email))
-        Auth_datasheet1.ref.createUser(user, function(error, userData) {
+        Auth_userAccess.ref.createUser(user, function(error, userData) {
           if (error) {
             fn.alert("Error creating user: " + error);
           } else {
@@ -239,14 +214,14 @@ angular.module('workspaceApp')
         });
       },
       login: function(user, cb){
-        if (Auth_datasheet1.ref.getAuth()) return;
+        if (Auth_userAccess.ref.getAuth()) return;
         
         if (!user.password) {
           fn.alert("please type password");
           return;
         }
         if (fn.valid_email(user.email))
-        Auth_datasheet1.ref.authWithPassword(user).then(function(authData) {
+        Auth_userAccess.ref.authWithPassword(user).then(function(authData) {
           // authData.email = $scope.user.email;
           $scope.user.name = user.email.split("@")[0] + "!";
           fn.greet("welcome " + $scope.user.name);
@@ -292,7 +267,9 @@ angular.module('workspaceApp')
       $uibModalInstance.dismiss('cancel');
     };
   })*/
-  .controller('MainCtrl', ['$scope', 'Auth_datasheet1', '$q', function ($scope, Auth_datasheet1, $q) {
+  .controller('MainCtrl', 
+    ['$scope', 'Auth_userAccess', '$q', 
+    function ($scope, Auth_userAccess, $q) {
 
     /*$scope.openModal = function($event, size){
       $event.preventDefault();

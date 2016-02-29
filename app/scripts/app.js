@@ -159,7 +159,7 @@ angular
     .state('404', {
       url: '/404',
       templateUrl: '/404.html'
-    })
+    });
     /*.state('login', {
       url: '/login',
       // templateUrl: 'views/login.html',

@@ -16,7 +16,7 @@ html
     // build:css(.tmp) styles/main.css
     link(rel='stylesheet', href='styles/main.css')
     // endbuild
-  body(ng-app='workspaceApp')
+  body(ng-app='workspaceApp' ng-strict-di)
     //if lte IE 8
       p.browsehappy
         | You are using an 
@@ -73,6 +73,7 @@ html
     script(src='scripts/controllers/ds13.js')
     script(src='scripts/controllers/ds14.js')
     script(src='scripts/controllers/ds15.js')
+    script(src='scripts/controllers/ng-fire.js')
     script(src='scripts/controllers/main.js')
     script(src='scripts/controllers/about.js')
     // endbuild

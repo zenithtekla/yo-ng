@@ -12,7 +12,7 @@
 angular.module('workspaceApp')
   .controller('DataSheet2', ['$scope', '$location', 'preload', 'Alchemy', function ($scope, $location, preload, Alchemy) {
     $scope.ds2 = {
-      entries: preload.get(),
+      entries: preload.get('DataSheet2'),
       fn: 'custom_func',
       items: ['first', 'second', 'third'],
       selectedValue: 'first',
@@ -33,8 +33,11 @@ angular.module('workspaceApp')
       assembly: '',
       date_received: '',
       time_received: '',
+      pcb_received_date: '',
+      pcb_received_time: '',
       date_completed: '',
-      time_completed: ''
+      time_completed: '',
+      scheduled_kickoff: ''
     };
     
   /* // # Alchemy custom methods - Alchemy.fusion(data).method()
@@ -72,12 +75,15 @@ angular.module('workspaceApp')
       // $scope.ds2.entries = $scope.ds2.entries.concat($scope.new_entry);
       $scope.ds2.entries.$add($scope.new_entry);
       $scope.new_entry = {
-          customer: '',
-          assembly: '',
-          date_received: '',
-          time_received: '',
-          date_completed: '',
-          time_completed: ''
+        customer: '',
+        assembly: '',
+        date_received: '',
+        time_received: '',
+        pcb_received_date: '',
+        pcb_received_time: '',
+        date_completed: '',
+        time_completed: '',
+        scheduled_kickoff: ''
       };
     };
 }]);
