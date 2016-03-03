@@ -64,15 +64,6 @@ angular.module('workspaceApp')
       $scope.editMode = false;
       $scope.field_display = {'visibility': 'hidden'};
       var printContents = document.getElementById(divName).innerHTML;
-      var divToPrint = document.getElementById("divReadyForPrint");
-      divToPrint.innerHTML = '';
-      divToPrint.innerHTML = printContents;
-      console.log(document.getElementById("divReadyForPrint").innerHTML);
-      // document.getElementById("divReadyForPrint").remove("input");
-      // console.log(document.getElementById("divReadyForPrint"));
-     
-      // document.getElementById(divName).innerHTML;
-      // var printContents = document.getElementById('divReadyForPrint').innerHTML;
       var x = window.open('','_blank', 'height='+ (screen.height - 120) +', width='+screen.width);
       x.document.open().write('<html><head><title>Full-window display</title><link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css"><link rel="stylesheet" type="text/css" href="styles/print.css"></head>'+
       '<body onload="window.print()"><div class="container-fluid">'
