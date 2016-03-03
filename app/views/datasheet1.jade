@@ -1,9 +1,9 @@
 h3 {{ tpl_data.title}}
 br
-.table-responsive
-  table#divToPrint.table.table-bordered.table-striped.table-condensed
+#divToPrint.table-responsive
+  table.table.table-bordered.table-striped.table-condensed
     thead
-      tr
+      tr.screen
         th(colspan='2')
           input(type='text', ng-model='query')
           span(ng-show='query') Search for "{{query}}"
@@ -50,38 +50,47 @@ br
         th  {{ tpl_data.time_received }} 
         th  {{ tpl_data.date_completed }} 
         th  {{ tpl_data.time_completed }} 
-        th  {{ tpl_data.action }} 
+        th.screen  {{ tpl_data.action }} 
     tbody
       tr(ng-repeat='entry in ds1.entries | filter:query')
         td
-          input(type='text', ng-model='entry.customer', ng-change='ds1.entries.$save(entry)')
+          input.screen(type='text', ng-model='entry.customer', ng-change='ds1.entries.$save(entry)', ng-show='editMode')
+          span(ng-hide='editMode') {{entry.customer}}
         td
-          input(type='text', ng-model='entry.assembly', ng-change='ds1.entries.$save(entry)')
+          input.screen(type='text', ng-model='entry.assembly', ng-change='ds1.entries.$save(entry)')
+          span(ng-hide='editMode') {{entry.assembly}}
         td
-          input(type='text', ng-model='entry.date_received', ng-change='ds1.entries.$save(entry)')
+          input.screen(type='text', ng-model='entry.date_received', ng-change='ds1.entries.$save(entry)')
+          span(ng-hide='editMode') {{entry.date_received}}
         td
-          input(type='text', ng-model='entry.time_received', ng-change='ds1.entries.$save(entry)')
+          input.screen(type='text', ng-model='entry.time_received', ng-change='ds1.entries.$save(entry)')
+          span(ng-hide='editMode') {{entry.time_received}}
         td
-          input(type='text', ng-model='entry.date_completed', ng-change='ds1.entries.$save(entry)')
+          input.screen(type='text', ng-model='entry.date_completed', ng-change='ds1.entries.$save(entry)')
+          span(ng-hide='editMode') {{entry.date_completed}}
         td
-          input(type='text', ng-model='entry.time_completed', ng-change='ds1.entries.$save(entry)')
-        td
+          input.screen(type='text', ng-model='entry.time_completed', ng-change='ds1.entries.$save(entry)')
+          span(ng-hide='editMode') {{entry.time_completed}}
+        td.screen
           button.btn-xs.btn-danger(ng-click='ds1.entries.$remove(entry)')
             span.fa.fa-trash-o.fa-sm
-      tr
+      tr.screen
         td
-          input(type='text', ng-model='new_entry.customer')
+          input.screen(type='text', ng-model='new_entry.customer')
         td
-          input(type='text', ng-model='new_entry.assembly')
+          input.screen(type='text', ng-model='new_entry.assembly')
         td
-          input(type='text', ng-model='new_entry.date_received')
+          input.screen(type='text', ng-model='new_entry.date_received')
         td
-          input(type='text', ng-model='new_entry.time_received')
+          input.screen(type='text', ng-model='new_entry.time_received')
         td
-          input(type='text', ng-model='new_entry.date_completed')
+          input.screen(type='text', ng-model='new_entry.date_completed')
         td
-          input(type='text', ng-model='new_entry.time_completed')
+          input.screen(type='text', ng-model='new_entry.time_completed')
         td
           button.btn-xs.btn-success(ng-click='insert()')
             span.fa.fa-plus-square
             |   Insert
+br
+#divReadyForPrint.table-responsive.hidden
+// pre {{ds1.entries | json}}

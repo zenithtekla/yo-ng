@@ -1,0 +1,6 @@
+.screen {
+display: none !important;
+}
+.print {
+display: inline-block;
+}
